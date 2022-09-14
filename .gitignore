@@ -141,3 +141,4 @@ cython_debug/
 # project databases
 *.db
 *.db-journal
+/http_https_result.csv
