@@ -41,7 +41,7 @@ def flatten_domain_dict(obj: dict) -> Iterator[dict]:
 
 
 def main():
-    domains = defaultdict(lambda: {"http": False, "https": False})
+    domains = defaultdict(lambda: {"http": None, "https": None})
     prev_domain = None
     parser = apachelogs.LogParser(LOG_FORMAT)
     for filepath in sorted(
@@ -62,7 +62,9 @@ def main():
                             print(f"  👍{protocol}")
                             break
                     except ValueError:
-                        continue
+                        pass
+                else:
+                    domains[domain][protocol] = False
 
         prev_domain = domain
 
